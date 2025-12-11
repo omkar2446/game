@@ -1,14 +1,29 @@
+# Game One - SEO Robots Configuration
+# Allow all search engines to crawl and index
+
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api/
+Disallow: /node_modules/
+Crawl-delay: 1
+
+# Google specific
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 0
 
+# Bing specific
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 1
 
+# Social media crawlers
 User-agent: Twitterbot
 Allow: /
 
 User-agent: facebookexternalhit
 Allow: /
 
-User-agent: *
-Allow: /
+# Sitemap location for search engines
+Sitemap: https://game-one-lyart.vercel.app/sitemap.xml

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Layout } from '@/components/layout/Layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -7,6 +7,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { Brain, ArrowRight, RotateCcw, Trophy } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { updateMetaTags, seoConfig } from '@/lib/seo';
 
 const questions = [
   {
@@ -43,6 +44,11 @@ export default function IQTestGame() {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [showResult, setShowResult] = useState(false);
   const [gameComplete, setGameComplete] = useState(false);
+
+  useEffect(() => {
+    // Update meta tags for IQ Test page
+    updateMetaTags(seoConfig.iqTest);
+  }, []);
 
   const handleAnswer = (index: number) => {
     if (selectedAnswer !== null) return;

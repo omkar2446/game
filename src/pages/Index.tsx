@@ -3,8 +3,9 @@ import { GameCard } from '@/components/games/GameCard';
 import { useAuth } from '@/lib/auth';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { GameSelectionModal } from '@/components/GameSelectionModal';
+import { updateMetaTags, seoConfig } from '@/lib/seo';
 
 import { 
   Brain, 
@@ -75,6 +76,11 @@ const games = [
 export default function Index() {
   const { user } = useAuth();
   const [showGameModal, setShowGameModal] = useState(true);
+
+  useEffect(() => {
+    // Update meta tags for home page
+    updateMetaTags(seoConfig.home);
+  }, []);
 
   return (
     <>

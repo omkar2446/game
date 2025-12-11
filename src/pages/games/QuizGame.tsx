@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Layout } from '@/components/layout/Layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -6,6 +6,7 @@ import { useAuth } from '@/lib/auth';
 import { supabase } from '@/integrations/supabase/client';
 import { HelpCircle, ArrowRight, RotateCcw, Trophy, Clock } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { updateMetaTags, seoConfig } from '@/lib/seo';
 
 const questions = [
   {
@@ -47,6 +48,11 @@ export default function QuizGame() {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [showResult, setShowResult] = useState(false);
   const [gameComplete, setGameComplete] = useState(false);
+
+  useEffect(() => {
+    // Update meta tags for Quiz game page
+    updateMetaTags(seoConfig.quiz);
+  }, []);
 
   const handleAnswer = (index: number) => {
     if (selectedAnswer !== null) return;
